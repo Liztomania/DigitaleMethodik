@@ -1,5 +1,7 @@
 -- Rechtsklick run selected query
 DROP TABLE IF EXISTS Kuenstlerin;
+DROP TABLE IF EXISTS Kunstwerk;
+DROP TABLE IF EXISTS Ausstellungsort;
 
 -- Tabelle für Künstler*innen
 
@@ -57,19 +59,21 @@ CREATE TABLE Ausstellungsort (
     Name TEXT,
     Stadt TEXT,
     ISILNummer PRIMARY KEY,
-    Art TEXT
+    Art TEXT,
+    WerkTitel TEXT,
+    FOREIGN KEY (WerkTitel) REFERENCES Kunstwerk(Titel)
 );
 
-INSERT INTO Ausstellungsort (Name, Stadt, ISILNummer, Art)
-Values ('Paula Modersohn-Becker Museum', 'Bremen', 'DE-MUS-027718', 'Museum');
+INSERT INTO Ausstellungsort (Name, Stadt, ISILNummer, Art, WerkTitel)
+Values ('Paula Modersohn-Becker Museum', 'Bremen', 'DE-MUS-027718', 'Museum', 'Selbstbildnis vor grünem Hintergrund mit blauer Iris');
 
 INSERT INTO Ausstellungsort (Name, Stadt, ISILNummer, Art)
 Values ('Hamburger Kunsthalle', 'Hamburg', 'DE-MUS-059210', 'Museum');
 
-INSERT INTO Ausstellungsort (Name, Stadt, ISILNummer, Art)
-Values ('Musée Rodin', 'Paris', 'FR-75107-MUS01', 'Museum');
+INSERT INTO Ausstellungsort (Name, Stadt, ISILNummer, Art, WerkTitel)
+Values ('Musée Rodin', 'Paris', 'FR-75107-MUS01', 'Museum', 'L Âge mûr');
 
-SELECT * from Ausstellungsort;
+
 
 -- Mehrere Werte einfügen
 
@@ -80,3 +84,10 @@ Values
 ('Universitätsbibliothek Mainz', 'Mainz', 'DE-77', 'Bibliothek'),
 ('Alte Nationalgalerie', 'Berlin', 'DE-MUS-814', 'Museum'),
 ('Test', 'Melbourne', '0-3', 'Galerie');
+
+SELECT * from Ausstellungsort;
+
+SELECT Kuenstlerin.Nachname, Ausstellungsort.Name
+FROM Ausstellungsort
+JOIN Kunstwerk ON Ausstellungsort.WerkTitel = Kunstwerk.Titel
+JOIN Kuenstlerin ON Kunstwerk.KuenstlerinGND = Kuenstlerin.GND;
