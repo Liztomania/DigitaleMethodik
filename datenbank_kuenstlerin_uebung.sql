@@ -78,4 +78,5 @@ Values
 ('Deichtorhallen', 'Hamburg', '0-1', 'Museum'),
 ('Pinakothek der Moderne', 'München', '0-2', 'Museum'),
 ('Universitätsbibliothek Mainz', 'Mainz', 'DE-77', 'Bibliothek'),
-('Alte Nationalgalerie', 'Berlin', 'DE-MUS-814', 'Museum');
+('Alte Nationalgalerie', 'Berlin', 'DE-MUS-814', 'Museum'),
+('Test', 'Melbourne', '0-3', 'Galerie');
